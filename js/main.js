@@ -61,7 +61,9 @@ function renderTodoList() {
 
 //User clicked on the add button
 //If there is any text inside the text field, then add the text in the todo list
-addButton.addEventListener('click' , function() {
+addButton.addEventListener('click' , addButtonPressed);
+
+function addButtonPressed() {
   let value = document.getElementById("item").value;
   if(value){
     if(data.todo.length==0){
@@ -73,6 +75,24 @@ addButton.addEventListener('click' , function() {
     document.getElementById("item").value='';
   }
 
+}
+
+
+var rhythm = document.getElementById("item");
+rhythm.addEventListener("keyup", function(event) {
+  var ty = event.charCode || event.char || event.which;
+  var text = rhythm.value;
+  if(ty == '13') {
+    if(text){
+      if(data.todo.length==0){
+        showTodoTitle();
+      }
+      data.todo.push(text);
+      addItemtodo(text);
+
+      document.getElementById("item").value='';
+    }
+  }
 });
 
 //Adds a new item in the todo list
